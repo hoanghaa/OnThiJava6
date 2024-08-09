@@ -1,9 +1,7 @@
 package com.java5.onthijava6.api;
 
 import com.java5.onthijava6.entity.User;
-import com.java5.onthijava6.repository.UserRepo;
 import com.java5.onthijava6.service.UserSevice;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +19,21 @@ public class UserApi {
         try {
             response.put("success",true);
             response.put("data",userService.getAllUser());
+            response.put("message","Call api success");
+        }catch (Exception e){
+            response.put("success",false);
+            response.put("data",null);
+            response.put("message","Call api faile");
+        }
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/findUserByIdOrFullName")
+    public ResponseEntity<?> doGetAllUser(@RequestParam("key") String key){
+        Map<String, Object> response = new HashMap<>();
+        try {
+            response.put("success",true);
+            response.put("data",userService.findByKeyword(key));
             response.put("message","Call api success");
         }catch (Exception e){
             response.put("success",false);

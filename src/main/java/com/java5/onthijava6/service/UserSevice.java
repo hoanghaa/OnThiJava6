@@ -10,4 +10,6 @@ public interface UserSevice {
     User saveUser(User user);
 
     int deleteUser(String userId);
+
+    List<User> findByKeyword(String key);
 }

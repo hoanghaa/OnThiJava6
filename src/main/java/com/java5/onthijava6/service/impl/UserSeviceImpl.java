@@ -30,4 +30,9 @@ public class UserSeviceImpl implements UserSevice {
     public int deleteUser(String userId) {
         return userRepo.deleteUserById(userId);
     }
+
+    @Override
+    public List<User> findByKeyword(String key) {
+        return userRepo.findByIdOrFullName(key);
+    }
 }
